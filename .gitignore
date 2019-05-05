@@ -1,9 +1,16 @@
+# documentation and instructions files
+*.pdf
+*.docx
+
 # Log file
 .log
 
 # Eclipse files
 .project
 .classpath
+
+# Temp files
+*.tmp
 
 # target folder
 target
