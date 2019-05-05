@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.eltel</groupId>
+	<artifactId>home-test</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>coding-task</description>
+	    <dependencies> <!-- Required for swing capabilities -->
+		  	<dependency>
+		    <groupId>org.swinglabs</groupId>
+		    <artifactId>swingx</artifactId>
+		    <version>1.6.1</version>
+		</dependency>
+		<dependency> <!-- Required for getting rid of getters & setters -->
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.6</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency> <!-- Required for parsing json to object -->
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.8</version>
+		</dependency>
+		<dependency> <!-- Required for: 1. EnumUtils, to compare string to enum value 2. StringUtils, to check if a given string is empty.-->
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.9</version>
+		</dependency>
+		<dependency> <!-- Required for logging -->
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		
+	</dependencies>
+  
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
