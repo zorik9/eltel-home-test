@@ -11,5 +11,5 @@ Developer - candidate test.pdf file.
 
 # Running the project
 1. Run ```mvn clean install```
-The executable jar is: home-test-0.0.1-SNAPSHOT.jar, and it can be found in the target folder.
-2. Go to to the target folder, and open the command line. And than run java -jar home-test-0.0.1-SNAPSHOT.jar
+The executable jar is: App.jar, and it can be found in the target folder.
+2. Go to to the target folder, and open the command line. And than run java -jar App.jar

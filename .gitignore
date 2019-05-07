@@ -15,5 +15,6 @@
 # target folder
 target
 
-# generated target folder
+# generated target folders
 bin
+.settings
