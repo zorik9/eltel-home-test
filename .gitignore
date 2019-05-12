@@ -3,7 +3,7 @@
 *.docx
 
 # Log file
-.log
+*.log
 
 # Eclipse files
 .project
@@ -12,9 +12,12 @@
 # Temp files
 *.tmp
 
-# target folder
-target
-
 # generated target folders
 bin
+target
+
+# generated settings file
 .settings
+
+# generated dependency reduced pom
+dependency-reduced-pom.xml

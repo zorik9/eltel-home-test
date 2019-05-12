@@ -2,7 +2,6 @@ package com.eltel.home_test;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,23 +39,50 @@ public class EntitiesFetcher {
 		}
     }
     
-    private String getJsonEntitiesArray() {
+    @SuppressWarnings("finally")
+	private String getJsonEntitiesArray() {
     	String fileName = config.getEntitiesFile();
-    	
+    	URI uri = null;
+    	Path resourcePath = null;
+    	String jsonEntitiesArray = null;
+    	String uriPath = null;
+    	String fileFullPath = null;
+    	boolean isError = false;
     	try {
     		/** Support FileSystem creation on runtime,
     		 * in order to avoid FileSystemNotFoundException when running executable jar
     		 * 
     		 * */
-    		URI uri = getClass().getClassLoader().getResource(fileName).toURI();
+    		
+    		fileFullPath = getClass().getClassLoader().getResource(fileName).getPath();
+    		uriPath = fileFullPath.startsWith("file:") ? fileFullPath.replace("file:", "jar:file:") : "file:" + fileFullPath;
+    		uri = URI.create(uriPath);
     		Map<String, String> env = new HashMap<>(); 
     		env.put("create", "true");
-    		//FileSystem zipfs = FileSystems.newFileSystem(uri, env);
-    		FileSystems.newFileSystem(uri, env);
-    		Path resourcePath = Paths.get(uri);
-			return new String(Files.readAllBytes(resourcePath));
-		} catch (IOException | URISyntaxException e) {
+    		
+    		if(uriPath.startsWith("jar:")) {
+	    		System.out.println("Creating new file system environment");
+	    		FileSystems.newFileSystem(uri, env);
+	    		System.out.println("File system environment has been successfuly created");
+    		}
+    		
+    		resourcePath = Paths.get(uri);
+    		jsonEntitiesArray = new String(Files.readAllBytes(resourcePath));
+		} catch (IOException e) {
+			isError = true;
+			throw new RuntimeException("Failed to read json entities array from " + fileName + ", due to IO issues", e);
+		} catch (Exception e) {
+			isError = true;
 			throw new RuntimeException("Failed to read json entities array from " + fileName, e);
+		} finally {
+			if(isError && config.isDebug()) {
+				System.out.println("file full path= " + fileFullPath);
+				System.out.println("uri = " + uri);
+				System.out.println("uri schema= " + uri.getScheme());
+				System.out.println("resourcePath = " + resourcePath);
+				System.out.println("jsonEntitiesArray = " + jsonEntitiesArray);
+			}
+			return jsonEntitiesArray;
 		}
     }
 }

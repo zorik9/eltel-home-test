@@ -6,6 +6,7 @@ import lombok.Getter;
 
 @Getter
 public class Config {
+	private boolean debug = false;
 	private boolean resizableWindow = true;
 	private int windowLocationX = 100;
 	private int windowLocationY = 100;
