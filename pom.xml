@@ -21,8 +21,9 @@
 		<dependency> <!-- Required for parsing json to object -->
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.8</version>
+			<version>2.9.9</version>
 		</dependency>
+		<dependency>
 		<dependency> <!-- Required for:
 				1. EnumUtils, to compare string to enum value
 				2. StringUtils, to check if a given string is empty. -->
